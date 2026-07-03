@@ -38,9 +38,8 @@ Or use the GitHub Actions workflow in `.github/workflows/deploy.yml` for automat
 - ✅ SEO, sitemap, robots.txt, RSS, Open Graph image, JSON-LD
 - ✅ Plausible analytics configured
 - ✅ Deployed to Cloudflare Pages
-  - Production: https://gadsosa.pages.dev
-  - Custom domains: `gadsosa.com` and `www.gadsosa.com` pending DNS CNAME records
-- ⏳ Contact form endpoint needs a real Basin form ID
-- ⏳ Domain DNS records need to be added (see DEPLOY.md)
+  - Production: https://www.gadsosa.com
+  - Also resolves at https://gadsosa.com and https://gadsosa.pages.dev
+- ✅ Contact form wired to Basin
 
 See `site/README.md` for content-editing and maintenance instructions.

@@ -109,7 +109,6 @@ Plausible is loaded in `src/layouts/Layout.astro` with `data-domain="gadsosa.com
 
 ## Open items
 
-- Replace `GADSOSA_HANDLE` in `src/components/SectionContact.astro` with the final X/Twitter handle.
 - Update portfolio items in `src/components/SectionPortfolio.astro` as projects evolve.
 - Provide a real `PUBLIC_BASIN_FORM_ID`.
 - Optionally add company logos to the hero trust row.
