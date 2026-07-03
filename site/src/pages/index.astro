@@ -1,0 +1,34 @@
+---
+import Layout from '../layouts/Layout.astro';
+import SignatureSpine from '../components/SignatureSpine.astro';
+import SectionHero from '../components/SectionHero.astro';
+import SectionHowIWork from '../components/SectionHowIWork.astro';
+import SectionWhyMe from '../components/SectionWhyMe.astro';
+import SectionPortfolio from '../components/SectionPortfolio.astro';
+import SectionInsights from '../components/SectionInsights.astro';
+import SectionExperience from '../components/SectionExperience.astro';
+import SectionTechDepth from '../components/SectionTechDepth.astro';
+import SectionContact from '../components/SectionContact.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('insights'))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+  .slice(0, 3);
+
+const title = 'Gad Sosa — VP R&D & CTO | ML Security & Scalable SaaS';
+const description =
+  'Gad Sosa is a technology executive with 20+ years leading AI and ML from model development to production-grade systems, GPU orchestration, and ML security. Open to full-time leadership roles and long-term engagements.';
+---
+
+<Layout title={title} description={description} type="website">
+  <SignatureSpine slot="signature" />
+  <SectionHero />
+  <SectionHowIWork />
+  <SectionWhyMe />
+  <SectionPortfolio />
+  <SectionInsights posts={posts} />
+  <SectionExperience />
+  <SectionTechDepth />
+  <SectionContact />
+</Layout>

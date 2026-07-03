@@ -1,0 +1,116 @@
+---
+const basinId = import.meta.env.PUBLIC_BASIN_FORM_ID || 'YOUR_BASIN_FORM_ID';
+const basinUrl = `https://usebasin.com/f/${basinId}`;
+---
+
+<section id="contact" class="section-pad section-dark">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="sec-num">§07 / 07</span>
+      <h2 class="sec-title">Get in touch</h2>
+    </div>
+    <p class="sec-sub">
+      Considering me for a leadership role, or have a serious engagement in mind? Tell me what you're building and where you're headed.
+    </p>
+
+    <div class="contact-grid">
+      <div>
+        <ul class="contact-links">
+          <li>
+            <span class="k">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/gadsosa" target="_blank" rel="noopener">/in/gadsosa →</a>
+          </li>
+          <li>
+            <span class="k">X</span>
+            <a href="https://x.com/GADSOSA_HANDLE" target="_blank" rel="noopener">@GADSOSA_HANDLE →</a>
+          </li>
+          <li>
+            <span class="k">Location</span>
+            <span>Israel · Remote-friendly</span>
+          </li>
+        </ul>
+        <div class="contact-meta" aria-label="Coordinates and availability">
+          32.0853° N · 34.7818° E<br />
+          AVAILABLE // FULL-TIME & 6MO+
+        </div>
+      </div>
+
+      <form id="contactForm" action={basinUrl} method="POST" novalidate>
+        <div class="field">
+          <label for="gs-name">NAME</label>
+          <input type="text" id="gs-name" name="name" required />
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label for="gs-email">EMAIL</label>
+            <input type="email" id="gs-email" name="email" required />
+          </div>
+          <div class="field">
+            <label for="gs-company">COMPANY</label>
+            <input type="text" id="gs-company" name="company" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="gs-type">WHAT ARE YOU LOOKING FOR?</label>
+          <select id="gs-type" name="type" required>
+            <option value="Full-time leadership role (VP R&D / CTO)">Full-time leadership role (VP R&D / CTO)</option>
+            <option value="Long-term engagement (6+ months)">Long-term engagement (6+ months)</option>
+            <option value="AI & ML, development to production">AI & ML, development to production</option>
+            <option value="AI-driven engineering (do more with less)">AI-driven engineering (do more with less)</option>
+            <option value="R&D turnaround / scaling">R&D turnaround / scaling</option>
+            <option value="Something else">Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="gs-message">TELL ME A BIT MORE</label>
+          <textarea id="gs-message" name="message" required></textarea>
+        </div>
+        {/* Honeypot */}
+        <div class="form-honeypot" aria-hidden="true">
+          <label for="gs-website">Website</label>
+          <input type="text" id="gs-website" name="website" tabindex="-1" autocomplete="off" />
+        </div>
+        <button type="submit" class="btn btn-primary">Send message <span aria-hidden="true">→</span></button>
+        <p class="form-note">I'll reply as soon as I can, usually within one business day.</p>
+        <div id="formStatus" class="form-status" role="status" aria-live="polite" style="display:none;"></div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  const form = document.getElementById('contactForm');
+  const statusEl = document.getElementById('formStatus');
+  if (form && statusEl) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      statusEl.style.display = 'none';
+      statusEl.className = 'form-status';
+
+      const honeypot = form.querySelector('[name="website"]');
+      if (honeypot && (honeypot as HTMLInputElement).value) {
+        return;
+      }
+
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { Accept: 'application/json' },
+        });
+        if (res.ok) {
+          statusEl.textContent = 'Thanks — your message has been sent. I’ll be in touch soon.';
+          statusEl.classList.add('success');
+          form.reset();
+        } else {
+          throw new Error('Submission failed');
+        }
+      } catch {
+        statusEl.textContent = 'Something went wrong. Please try again, or reach out on LinkedIn.';
+        statusEl.classList.add('error');
+      }
+      statusEl.style.display = 'block';
+    });
+  }
+</script>

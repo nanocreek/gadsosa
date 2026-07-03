@@ -1,0 +1,203 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  canonical?: string;
+  type?: 'website' | 'article';
+  publishedTime?: string;
+  modifiedTime?: string;
+}
+
+const {
+  title,
+  description,
+  ogImage = '/og-image.png',
+  canonical,
+  type = 'website',
+  publishedTime,
+  modifiedTime,
+} = Astro.props;
+
+const site = Astro.site?.toString().replace(/\/$/, '') || 'https://www.gadsosa.com';
+const pageUrl = canonical ? `${site}${canonical}` : `${site}${Astro.url.pathname}`;
+const fullOgImage = ogImage.startsWith('http') ? ogImage : `${site}${ogImage}`;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Gad Sosa',
+  jobTitle: 'VP R&D',
+  description:
+    'Technology executive with 20+ years leading software R&D and machine-learning security. Open to full-time leadership roles and long-term engagements as VP R&D or CTO.',
+  url: site,
+  sameAs: ['https://www.linkedin.com/in/gadsosa', 'https://x.com/GADSOSA_HANDLE'],
+  worksFor: { '@type': 'Organization', name: 'DeepKeep' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Technion — Israel Institute of Technology' },
+  knowsAbout: [
+    'Artificial Intelligence',
+    'Machine Learning',
+    'ML Model Development',
+    'Production Machine Learning',
+    'GPU Orchestration',
+    'GPU Cluster Management',
+    'Low-Latency Inference',
+    'Machine Learning Security',
+    'AI Adoption',
+    'AI-Driven Software Engineering',
+    'Engineering Productivity',
+    'Software Architecture',
+    'R&D Leadership',
+    'SaaS',
+    'Cloud Infrastructure',
+    'Engineering Leadership',
+  ],
+  address: { '@type': 'PostalAddress', addressCountry: 'Israel' },
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="keywords" content="Gad Sosa, VP R&D, CTO, AI leadership, machine learning, GPU orchestration, GPU cluster management, ML security, production ML, low-latency inference, AI adoption, AI-driven engineering, engineering productivity, R&D leadership, technology executive, SaaS architecture" />
+    <link rel="canonical" href={pageUrl} />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content={type === 'article' ? 'article' : 'profile'} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={pageUrl} />
+    <meta property="og:image" content={fullOgImage} />
+    <meta property="og:site_name" content="Gad Sosa" />
+    {publishedTime && <meta property="article:published_time" content={publishedTime} />}
+    {modifiedTime && <meta property="article:modified_time" content={modifiedTime} />}
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={fullOgImage} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Structured data -->
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+
+    <slot name="head-append" />
+
+    <!-- Plausible analytics -->
+    <script defer data-domain="gadsosa.com" src="https://plausible.io/js/script.js"></script>
+  </head>
+  <body>
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-white focus:text-ink focus:p-2">
+      Skip to main content
+    </a>
+
+    <slot name="signature" />
+
+    <nav role="navigation" aria-label="Primary">
+      <div class="wrap nav-in">
+        <a href="#top" class="brand" aria-label="Gad Sosa home">
+          <span class="brand-name">Gad Sosa</span>
+          <span class="brand-tag">R&D</span>
+        </a>
+        <button class="mobile-menu-btn" aria-expanded="false" aria-controls="nav-links" aria-label="Toggle menu">
+          MENU
+        </button>
+        <div class="nav-links" id="nav-links">
+          <a href="#help" data-navlink="help">How I work</a>
+          <a href="#portfolio" data-navlink="portfolio">Portfolio</a>
+          <a href="#insights" data-navlink="insights">Insights</a>
+          <a href="#experience" data-navlink="experience">Experience</a>
+          <a href="#contact" class="cta">Get in touch</a>
+        </div>
+      </div>
+    </nav>
+
+    <main id="main-content">
+      <slot />
+    </main>
+
+    <footer>
+      <div class="wrap">
+        © <span id="year"></span> GAD SOSA · VP R&D & CTO · ML SECURITY
+      </div>
+    </footer>
+
+    <script>
+      // Current year
+      const yearEl = document.getElementById('year');
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      // Mobile menu toggle
+      const menuBtn = document.querySelector('.mobile-menu-btn');
+      const navLinks = document.getElementById('nav-links');
+      if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+          const isOpen = navLinks.classList.toggle('open');
+          menuBtn.setAttribute('aria-expanded', String(isOpen));
+        });
+        navLinks.querySelectorAll('a').forEach((link) => {
+          link.addEventListener('click', () => {
+            navLinks.classList.remove('open');
+            menuBtn.setAttribute('aria-expanded', 'false');
+          });
+        });
+      }
+
+      // Active section highlighting (nav + signature spine)
+      const ids = ['top', 'help', 'why', 'portfolio', 'insights', 'experience', 'tech', 'contact'];
+      const io = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const id = entry.target.id;
+              document.querySelectorAll('[data-navlink]').forEach((a) => {
+                a.classList.toggle('active', a.getAttribute('data-navlink') === id);
+              });
+              document.querySelectorAll('[data-nav]').forEach((a) => {
+                a.classList.toggle('active', a.getAttribute('data-nav') === id);
+              });
+            }
+          });
+        },
+        { rootMargin: '-45% 0px -50% 0px', threshold: 0 }
+      );
+      ids.forEach((id) => {
+        const el = document.getElementById(id);
+        if (el) io.observe(el);
+      });
+    </script>
+  </body>
+</html>
+
+<style>
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
+</style>

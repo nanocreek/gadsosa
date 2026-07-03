@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:#0d1621}
+  ::selection{background:#1f6feb;color:#fff}
+  @keyframes blink{0%,48%{opacity:1}49%,100%{opacity:0}}
+  @keyframes drawline{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+  @media (max-width:1180px){[data-register]{display:none!important}}
+  @media (max-width:900px){
+    [data-grid="cards"]{grid-template-columns:1fr!important}
+    [data-grid="why"],[data-grid="contact"]{grid-template-columns:1fr!important;gap:44px!important}
+    [data-grid="quotes"]{grid-template-columns:1fr!important}
+    [data-grid="tech"]{grid-template-columns:1fr 1fr!important;gap:32px 34px!important}
+    [data-navlink]{display:none!important}
+    [data-hero]{padding:120px 26px 80px!important}
+    [data-wrap]{padding-left:26px!important;padding-right:26px!important}
+    [data-nav-in]{padding:0 26px!important}
+    [data-post]{grid-template-columns:1fr!important;gap:8px!important}
+    [data-post] [data-arrow]{display:none!important}
+    [data-role]{grid-template-columns:1fr!important;gap:8px!important}
+    [data-role] [data-when]{padding-top:0!important}
+  }
+  @media (max-width:560px){
+    [data-grid="tech"]{grid-template-columns:1fr!important}
+    [data-grid="row2"]{grid-template-columns:1fr!important}
+    [data-hero]{padding:104px 22px 68px!important}
+  }
+</style>
+</helmet>
+
+<div style="font-family:'Geist',system-ui,sans-serif;color:#0d1621;background:#f6f7f8;-webkit-font-smoothing:antialiased;line-height:1.6;position:relative;overflow-x:hidden">
+
+  <!-- section register (signature spine) -->
+  <sc-if value="{{ showRegister }}" hint-placeholder-val="{{ true }}">
+  <div data-register style="position:fixed;right:26px;top:50%;transform:translateY(-50%);z-index:60;display:flex;flex-direction:column;gap:14px;mix-blend-mode:normal">
+    <a data-nav="top" href="#top" style="display:flex;align-items:center;gap:10px;justify-content:flex-end;text-decoration:none;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#9aa6b6;transition:color .25s"><span data-reglabel style="opacity:0;transform:translateX(6px);transition:.25s">TOP</span><span data-regdot style="width:20px;height:1.5px;background:#c3cbd6;transition:.25s;display:block"></span></a>
+    <a data-nav="help" href="#help" style="display:flex;align-items:center;gap:10px;justify-content:flex-end;text-decoration:none;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#9aa6b6;transition:color .25s"><span data-reglabel style="opacity:0;transform:translateX(6px);transition:.25s">01 HOW I WORK</span><span data-regdot style="width:20px;height:1.5px;background:#c3cbd6;transition:.25s;display:block"></span></a>
+    <a data-nav="why" href="#why" style="display:flex;align-items:center;gap:10px;justify-content:flex-end;text-decoration:none;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#9aa6b6;transition:color .25s"><span data-reglabel style="opacity:0;transform:translateX(6px);transition:.25s">02 WHY ME</span><span data-regdot style="width:20px;height:1.5px;background:#c3cbd6;transition:.25s;display:block"></span></a>
+    <a data-nav="voices" href="#voices" style="display:flex;align-items:center;gap:10px;justify-content:flex-end;text-decoration:none;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#9aa6b6;transition:color .25s"><span data-reglabel style="opacity:0;transform:translateX(6px);transition:.25s">03 REFERENCES</span><span data-regdot style="width:20px;height:1.5px;background:#c3cbd6;transition:.25s;display:block"></span></a>
+    <a data-nav="insights" href="#insights" style="display:flex;align-items:center;gap:10px;justify-content:flex-end;text-decoration:none;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#9aa6b6;transition:color .25s"><span data-reglabel style="opacity:0;transform:translateX(6px);transition:.25s">04 INSIGHTS</span><span data-regdot style="width:20px;height:1.5px;background:#c3cbd6;transition:.25s;display:block"></span></a>
+    <a data-nav="experience" href="#experience" style="display:flex;align-items:center;gap:10px;justify-content:flex-end;text-decoration:none;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#9aa6b6;transition:color .25s"><span data-reglabel style="opacity:0;transform:translateX(6px);transition:.25s">05 EXPERIENCE</span><span data-regdot style="width:20px;height:1.5px;background:#c3cbd6;transition:.25s;display:block"></span></a>
+    <a data-nav="tech" href="#tech" style="display:flex;align-items:center;gap:10px;justify-content:flex-end;text-decoration:none;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#9aa6b6;transition:color .25s"><span data-reglabel style="opacity:0;transform:translateX(6px);transition:.25s">06 TECH DEPTH</span><span data-regdot style="width:20px;height:1.5px;background:#c3cbd6;transition:.25s;display:block"></span></a>
+    <a data-nav="contact" href="#contact" style="display:flex;align-items:center;gap:10px;justify-content:flex-end;text-decoration:none;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.14em;color:#9aa6b6;transition:color .25s"><span data-reglabel style="opacity:0;transform:translateX(6px);transition:.25s">07 CONTACT</span><span data-regdot style="width:20px;height:1.5px;background:#c3cbd6;transition:.25s;display:block"></span></a>
+  </div>
+  </sc-if>
+
+  <!-- NAV -->
+  <nav style="position:sticky;top:0;z-index:50;background:rgba(13,22,33,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08)">
+    <div data-nav-in style="max-width:1140px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center;height:70px">
+      <a href="#top" style="text-decoration:none;display:flex;align-items:baseline;gap:11px">
+        <span style="font-family:'Newsreader',serif;font-weight:500;font-size:20px;color:#fff;letter-spacing:.01em">Gad Sosa</span>
+        <span style="font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.22em;color:#1f6feb;padding-top:2px">R&amp;D</span>
+      </a>
+      <div style="display:flex;gap:30px;align-items:center">
+        <a data-navlink="help" href="#help" style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;color:#9aa6b6;text-decoration:none;transition:color .2s" class="dnav">How I work</a>
+        <a data-navlink="voices" href="#voices" style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;color:#9aa6b6;text-decoration:none;transition:color .2s" class="dnav">References</a>
+        <a data-navlink="insights" href="#insights" style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;color:#9aa6b6;text-decoration:none;transition:color .2s" class="dnav">Insights</a>
+        <a data-navlink="experience" href="#experience" style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.08em;color:#9aa6b6;text-decoration:none;transition:color .2s" class="dnav">Experience</a>
+        <a href="#contact" style="font-family:'Geist',sans-serif;font-size:13px;font-weight:500;color:#fff;text-decoration:none;background:#1f6feb;padding:10px 18px;border-radius:2px;transition:background .2s" style-hover="background:#0b3d91">Get in touch</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" style="position:relative;background:#0d1621;color:#fff;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px);background-size:64px 64px;pointer-events:none"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(120% 90% at 78% 8%,rgba(31,111,235,.16),transparent 55%);pointer-events:none"></div>
+    <sc-if value="{{ showTags }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;top:22px;left:40px;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:rgba(255,255,255,.32)">32.0853° N &nbsp;·&nbsp; 34.7818° E</div>
+    <div style="position:absolute;top:22px;right:40px;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.18em;color:rgba(255,255,255,.32)">R&amp;D // EST. 1999</div>
+    </sc-if>
+
+    <div data-hero style="max-width:1140px;margin:0 auto;padding:150px 40px 96px;position:relative">
+      <div style="display:flex;align-items:center;gap:14px;margin-bottom:34px">
+        <span style="width:40px;height:1px;background:#1f6feb;transform-origin:left;animation:drawline .9s ease forwards"></span>
+        <span style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#5b93f0">VP R&amp;D · CTO · ML Security</span>
+        <span style="width:8px;height:16px;background:#1f6feb;display:inline-block;animation:blink 1.1s step-end infinite"></span>
+      </div>
+
+      <h1 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(46px,7vw,92px);line-height:1.0;letter-spacing:-.018em;max-width:16ch;color:#f4f6f9">I build products people <em style="font-style:italic;color:#7aa9f5;font-weight:500">trust</em> — and the R&amp;D organizations that keep shipping them.</h1>
+
+      <p style="margin-top:36px;max-width:60ch;font-size:19px;line-height:1.65;color:#aab6c6">20+ years turning ambitious ideas into secure, scalable software. I own AI and ML end to end — from model development through GPU-backed, production-grade systems that respond in real time — and build lean R&amp;D organizations that use AI to ship more, faster, for less.</p>
+
+      <div style="margin-top:42px;display:flex;gap:16px;flex-wrap:wrap">
+        <a href="#contact" style="display:inline-flex;align-items:center;gap:10px;background:#1f6feb;color:#fff;padding:15px 28px;border-radius:2px;font-size:15px;font-weight:500;text-decoration:none;font-family:'Geist',sans-serif;transition:background .2s,transform .15s" style-hover="background:#3b82f0;transform:translateY(-2px)">Start a conversation <span style="font-family:'Geist Mono',monospace">→</span></a>
+        <a href="#help" style="display:inline-flex;align-items:center;gap:10px;border:1px solid rgba(255,255,255,.2);color:#e6ebf1;padding:15px 28px;border-radius:2px;font-size:15px;font-weight:500;text-decoration:none;font-family:'Geist',sans-serif;transition:border-color .2s,color .2s" style-hover="border-color:#1f6feb;color:#7aa9f5">How I work</a>
+      </div>
+
+      <div style="margin-top:88px;padding-top:28px;border-top:1px solid rgba(255,255,255,.1)">
+        <div style="font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#6c7889;margin-bottom:20px">Leadership roles across</div>
+        <div style="display:flex;flex-wrap:wrap;gap:14px 44px;align-items:center">
+          <span style="font-family:'Newsreader',serif;font-size:22px;color:#cdd6e1;opacity:.85">DeepKeep</span>
+          <span style="width:4px;height:4px;background:#3a4a60;border-radius:50%"></span>
+          <span style="font-family:'Newsreader',serif;font-size:22px;color:#cdd6e1;opacity:.85">Informatica</span>
+          <span style="width:4px;height:4px;background:#3a4a60;border-radius:50%"></span>
+          <span style="font-family:'Newsreader',serif;font-size:22px;color:#cdd6e1;opacity:.85">ActiveTrail</span>
+          <span style="width:4px;height:4px;background:#3a4a60;border-radius:50%"></span>
+          <span style="font-family:'Newsreader',serif;font-size:22px;color:#cdd6e1;opacity:.85">MSN Israel</span>
+          <span style="width:4px;height:4px;background:#3a4a60;border-radius:50%"></span>
+          <span style="font-family:'Newsreader',serif;font-size:22px;color:#cdd6e1;opacity:.85">Brio · Dell</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 01 HOW I WORK -->
+  <section id="help" style="background:#f6f7f8;padding:104px 0">
+    <div style="max-width:1140px;margin:0 auto;padding:0 40px">
+      <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:18px">
+        <span style="font-family:'Geist Mono',monospace;font-size:13px;color:#1f6feb;letter-spacing:.06em">§01 / 07</span>
+        <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,4.2vw,46px);letter-spacing:-.01em">How I work</h2>
+      </div>
+      <p style="color:#6c7889;font-size:17.5px;max-width:60ch;margin-bottom:54px;line-height:1.6">I take on the roles where technology leadership is the difference between a company that scales and one that stalls — as a full-time executive, or through committed, multi-month engagements.</p>
+      <div data-grid="cards" style="display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:#e3e7ed;border:1px solid #e3e7ed">
+        <div style="background:#ffffff;padding:38px 34px;transition:background .2s" style-hover="background:#fbfcfd">
+          <div style="font-family:'Geist Mono',monospace;font-size:12px;color:#c8a24a;margin-bottom:22px;letter-spacing:.1em">01 / LEAD</div>
+          <h3 style="font-family:'Newsreader',serif;font-size:25px;font-weight:400;margin-bottom:13px;line-height:1.15">Head of R&amp;D / CTO</h3>
+          <p style="font-size:15px;color:#3a4a60;line-height:1.65">Own technology end to end — strategy, architecture, and the organization behind it. I set direction, make the hard calls, and build a team that keeps delivering long after the first release. This is where I do my best work: in the seat, accountable for the outcome.</p>
+          <div style="margin-top:22px;padding-top:16px;border-top:1px solid #e9edf2;font-size:13px;color:#6c7889"><b style="color:#0d1621;font-weight:600">Best for:</b> companies ready to put a proven leader in charge of R&amp;D or technology.</div>
+        </div>
+        <div style="background:#ffffff;padding:38px 34px;transition:background .2s" style-hover="background:#fbfcfd">
+          <div style="font-family:'Geist Mono',monospace;font-size:12px;color:#c8a24a;margin-bottom:22px;letter-spacing:.1em">02 / AI &amp; ML</div>
+          <h3 style="font-family:'Newsreader',serif;font-size:25px;font-weight:400;margin-bottom:13px;line-height:1.15">AI &amp; ML, development to production</h3>
+          <p style="font-size:15px;color:#3a4a60;line-height:1.65">I lead AI and ML across the whole lifecycle — from model development and training through GPU orchestration, deployment, and the engineering that gets production-grade response times at scale. That includes making the models secure and robust enough to put in front of real customers.</p>
+          <div style="margin-top:22px;padding-top:16px;border-top:1px solid #e9edf2;font-size:13px;color:#6c7889"><b style="color:#0d1621;font-weight:600">Best for:</b> companies turning AI research into dependable, fast, secure products in production.</div>
+        </div>
+        <div style="background:#ffffff;padding:38px 34px;transition:background .2s" style-hover="background:#fbfcfd">
+          <div style="font-family:'Geist Mono',monospace;font-size:12px;color:#c8a24a;margin-bottom:22px;letter-spacing:.1em">03 / SCALE</div>
+          <h3 style="font-family:'Newsreader',serif;font-size:25px;font-weight:400;margin-bottom:13px;line-height:1.15">R&amp;D turnaround &amp; scaling</h3>
+          <p style="font-size:15px;color:#3a4a60;line-height:1.65">When delivery stalls, teams burn out, or the platform can't keep up with growth, I take ownership of the problem — diagnosing the real bottleneck and rebuilding how the organization works so it ships reliably at scale. A commitment, not a drive-by review.</p>
+          <div style="margin-top:22px;padding-top:16px;border-top:1px solid #e9edf2;font-size:13px;color:#6c7889"><b style="color:#0d1621;font-weight:600">Best for:</b> companies growing faster than their engineering can currently support.</div>
+        </div>
+        <div style="background:#ffffff;padding:38px 34px;transition:background .2s" style-hover="background:#fbfcfd">
+          <div style="font-family:'Geist Mono',monospace;font-size:12px;color:#c8a24a;margin-bottom:22px;letter-spacing:.1em">04 / LEVERAGE</div>
+          <h3 style="font-family:'Newsreader',serif;font-size:25px;font-weight:400;margin-bottom:13px;line-height:1.15">AI-driven engineering — more output per dollar</h3>
+          <p style="font-size:15px;color:#3a4a60;line-height:1.65">Bringing AI into how a team builds software is a strategic bet, and most teams get it wrong: they either ignore it or burn budget on tools that don't stick. I embed AI where it removes real toil — automating the repetitive work, keeping quality and testing rigorous — so a leaner team ships more, faster, at lower cost. Do more with less, without cutting corners.</p>
+          <div style="margin-top:22px;padding-top:16px;border-top:1px solid #e9edf2;font-size:13px;color:#6c7889"><b style="color:#0d1621;font-weight:600">Best for:</b> leaders who want higher engineering leverage and lower cost without sacrificing quality.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 WHY -->
+  <section id="why" style="background:#ffffff;padding:104px 0;border-top:1px solid #e3e7ed;border-bottom:1px solid #e3e7ed">
+    <div style="max-width:1140px;margin:0 auto;padding:0 40px">
+      <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:54px">
+        <span style="font-family:'Geist Mono',monospace;font-size:13px;color:#1f6feb;letter-spacing:.06em">§02 / 07</span>
+        <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,4.2vw,46px);letter-spacing:-.01em">Why work with me</h2>
+      </div>
+      <div data-grid="why" style="display:grid;grid-template-columns:1.15fr 1fr;gap:64px;align-items:start">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <p style="font-size:21px;color:#0d1621;line-height:1.55;font-family:'Newsreader',serif;font-weight:400">Most technology problems that look technical are really about trust, clarity, and people. My job is to remove the uncertainty — so you know your product is secure, your roadmap is realistic, and your team can deliver.</p>
+          <p style="font-size:16.5px;color:#3a4a60;line-height:1.7">I've done this across the full range: founding my own company, running R&amp;D at a high-scale SaaS platform, directing teams inside global brands, and now leading research at the frontier of machine-learning security. That range means I can talk to your board and your engineers in the same conversation, and be understood by both.</p>
+          <p style="font-size:16.5px;color:#3a4a60;line-height:1.7">If you're not technical, that's exactly the point. You shouldn't have to become an engineer to make confident technology decisions — that translation is what I do. And I don't do it from the outside: I take ownership, embed with the team, and stay accountable for the result.</p>
+        </div>
+        <ul style="list-style:none">
+          <li style="padding:24px 0;border-top:1px solid #e3e7ed;display:flex;gap:18px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#c8a24a;padding-top:6px">P.1</span>
+            <div><span style="font-family:'Newsreader',serif;font-size:20px;font-weight:500;display:block;margin-bottom:7px;line-height:1.25">Shipped hardware-grade software for Dell</span><span style="font-size:14.5px;color:#3a4a60;line-height:1.6">Led the team that designed the software for the Dell Networking X-Series Switch — a product held to enterprise reliability standards.</span></div>
+          </li>
+          <li style="padding:24px 0;border-top:1px solid #e3e7ed;display:flex;gap:18px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#c8a24a;padding-top:6px">P.2</span>
+            <div><span style="font-family:'Newsreader',serif;font-size:20px;font-weight:500;display:block;margin-bottom:7px;line-height:1.25">Scaled a demanding SaaS platform</span><span style="font-size:14.5px;color:#3a4a60;line-height:1.6">Rebuilt technology, security, and delivery at ActiveTrail — modern data infrastructure, security programs, and processes built for aggressive growth.</span></div>
+          </li>
+          <li style="padding:24px 0;border-top:1px solid #e3e7ed;border-bottom:1px solid #e3e7ed;display:flex;gap:18px">
+            <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#c8a24a;padding-top:6px">P.3</span>
+            <div><span style="font-family:'Newsreader',serif;font-size:20px;font-weight:500;display:block;margin-bottom:7px;line-height:1.25">AI &amp; ML from research to production</span><span style="font-size:14.5px;color:#3a4a60;line-height:1.6">At DeepKeep, leading model development through GPU-backed production systems built for real-time response — and recognized through publications, patents, and top-tier conference talks.</span></div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 VOICES -->
+  <section id="voices" style="background:#0d1621;color:#fff;padding:104px 0;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:64px 64px;pointer-events:none"></div>
+    <div style="max-width:1140px;margin:0 auto;padding:0 40px;position:relative">
+      <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:18px">
+        <span style="font-family:'Geist Mono',monospace;font-size:13px;color:#c8a24a;letter-spacing:.06em">§03 / 07</span>
+        <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,4.2vw,46px);letter-spacing:-.01em;color:#fff">What clients say</h2>
+      </div>
+      <p style="color:#8794a6;font-size:17.5px;max-width:60ch;margin-bottom:54px;line-height:1.6">Real words from the people I've worked with. <em style="color:#c8a24a;font-style:italic">These two are drafts — replace with the actual quotes once your contacts send them.</em></p>
+      <div data-grid="quotes" style="display:grid;grid-template-columns:1fr 1fr;gap:26px">
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.11);border-radius:2px;padding:38px 36px;display:flex;flex-direction:column">
+          <span style="font-family:'Newsreader',serif;font-size:56px;line-height:.5;color:#c8a24a;height:26px">“</span>
+          <span style="display:inline-block;align-self:flex-start;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#0d1621;background:#c8a24a;padding:4px 10px;border-radius:2px;margin-bottom:20px">Draft — replace</span>
+          <blockquote style="font-family:'Newsreader',serif;font-size:21px;line-height:1.45;font-weight:400;color:#eef2f7;flex:1">Contact at Perceptiv8: 1–2 sentences on the outcome Gad delivered — e.g. what problem he solved, and the concrete result for the business.</blockquote>
+          <div style="margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;color:#aeb9c9"><b style="color:#fff;font-weight:600">[Name], [Title]</b> &nbsp;·&nbsp; Perceptiv8</div>
+        </div>
+        <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.11);border-radius:2px;padding:38px 36px;display:flex;flex-direction:column">
+          <span style="font-family:'Newsreader',serif;font-size:56px;line-height:.5;color:#c8a24a;height:26px">“</span>
+          <span style="display:inline-block;align-self:flex-start;font-family:'Geist Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#0d1621;background:#c8a24a;padding:4px 10px;border-radius:2px;margin-bottom:20px">Draft — replace</span>
+          <blockquote style="font-family:'Newsreader',serif;font-size:21px;line-height:1.45;font-weight:400;color:#eef2f7;flex:1">Contact at Summoro: 1–2 sentences on working with Gad — what changed because he was involved, in plain business terms.</blockquote>
+          <div style="margin-top:26px;padding-top:20px;border-top:1px solid rgba(255,255,255,.1);font-size:14px;color:#aeb9c9"><b style="color:#fff;font-weight:600">[Name], [Title]</b> &nbsp;·&nbsp; Summoro</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 INSIGHTS -->
+  <section id="insights" style="background:#f6f7f8;padding:104px 0">
+    <div style="max-width:1140px;margin:0 auto;padding:0 40px">
+      <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:18px">
+        <span style="font-family:'Geist Mono',monospace;font-size:13px;color:#1f6feb;letter-spacing:.06em">§04 / 07</span>
+        <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,4.2vw,46px);letter-spacing:-.01em">Insights</h2>
+      </div>
+      <p style="color:#6c7889;font-size:17.5px;max-width:64ch;margin-bottom:44px;line-height:1.6">Writing on machine-learning security, scaling engineering teams, and the technology decisions that make or break a company. These three are starting drafts — edit the text, or replace the links with full articles when you publish them.</p>
+      <div style="display:flex;flex-direction:column">
+        <a data-post href="#" style="display:grid;grid-template-columns:110px 1fr auto;gap:34px;align-items:center;padding:30px 0;border-top:1px solid #e3e7ed;text-decoration:none;transition:padding-left .25s" style-hover="padding-left:10px">
+          <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#6c7889;letter-spacing:.05em">DRAFT</span>
+          <div><span style="display:inline-block;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#1f6feb;margin-bottom:9px">ML Security</span><h3 style="font-family:'Newsreader',serif;font-size:24px;font-weight:400;line-height:1.2;margin-bottom:8px">Your AI feature is an attack surface. Here's what non-technical leaders need to ask.</h3><p style="font-size:14.5px;color:#3a4a60;max-width:64ch;line-height:1.6">A plain-language guide to the new risks AI introduces into a product — and the handful of questions every executive should be asking their team before they ship.</p></div>
+          <span data-arrow style="color:#1f6feb;font-family:'Geist Mono',monospace;font-size:20px">→</span>
+        </a>
+        <a data-post href="#" style="display:grid;grid-template-columns:110px 1fr auto;gap:34px;align-items:center;padding:30px 0;border-top:1px solid #e3e7ed;text-decoration:none;transition:padding-left .25s" style-hover="padding-left:10px">
+          <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#6c7889;letter-spacing:.05em">DRAFT</span>
+          <div><span style="display:inline-block;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#1f6feb;margin-bottom:9px">AI &amp; Teams</span><h3 style="font-family:'Newsreader',serif;font-size:24px;font-weight:400;line-height:1.2;margin-bottom:8px">How to build an engineering team that uses AI to ship more — without the runaway cost.</h3><p style="font-size:14.5px;color:#3a4a60;max-width:64ch;line-height:1.6">Bringing AI into how you build is a strategic decision, not a tooling one. Where it creates real leverage, where it quietly burns budget, and how to keep quality high while a smaller team moves faster.</p></div>
+          <span data-arrow style="color:#1f6feb;font-family:'Geist Mono',monospace;font-size:20px">→</span>
+        </a>
+        <a data-post href="#" style="display:grid;grid-template-columns:110px 1fr auto;gap:34px;align-items:center;padding:30px 0;border-top:1px solid #e3e7ed;border-bottom:1px solid #e3e7ed;text-decoration:none;transition:padding-left .25s" style-hover="padding-left:10px">
+          <span style="font-family:'Geist Mono',monospace;font-size:12px;color:#6c7889;letter-spacing:.05em">DRAFT</span>
+          <div><span style="display:inline-block;font-family:'Geist Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#1f6feb;margin-bottom:9px">Production AI</span><h3 style="font-family:'Newsreader',serif;font-size:24px;font-weight:400;line-height:1.2;margin-bottom:8px">Your model works in the notebook. Now make it fast, reliable, and affordable in production.</h3><p style="font-size:14.5px;color:#3a4a60;max-width:64ch;line-height:1.6">The gap between a working model and a production system that responds in milliseconds — without a runaway GPU bill — is where most AI projects quietly stall. What it takes to close it.</p></div>
+          <span data-arrow style="color:#1f6feb;font-family:'Geist Mono',monospace;font-size:20px">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 EXPERIENCE -->
+  <section id="experience" style="background:#ffffff;padding:104px 0;border-top:1px solid #e3e7ed;border-bottom:1px solid #e3e7ed">
+    <div style="max-width:1140px;margin:0 auto;padding:0 40px">
+      <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:18px">
+        <span style="font-family:'Geist Mono',monospace;font-size:13px;color:#1f6feb;letter-spacing:.06em">§05 / 07</span>
+        <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,4.2vw,46px);letter-spacing:-.01em">Experience</h2>
+      </div>
+      <p style="color:#6c7889;font-size:17.5px;max-width:60ch;margin-bottom:44px;line-height:1.6">Two decades of technical leadership — from founding a company to running R&amp;D at scale.</p>
+      <div style="display:flex;flex-direction:column">
+        <div data-role style="display:grid;grid-template-columns:180px 1fr;gap:40px;padding:32px 0;border-top:1px solid #e3e7ed">
+          <div data-when style="font-family:'Geist Mono',monospace;font-size:12.5px;color:#6c7889;padding-top:6px;letter-spacing:.03em">Dec 2022 — Present</div>
+          <div><div style="font-family:'Newsreader',serif;font-size:23px;font-weight:500">VP R&amp;D</div><div style="color:#1f6feb;font-weight:500;font-size:14px;margin:5px 0 12px;font-family:'Geist',sans-serif">DeepKeep</div><p style="color:#3a4a60;font-size:15px;max-width:64ch;line-height:1.65">Lead engineers and ML researchers building technology at the intersection of machine-learning research and security. Own the strategic R&amp;D vision and deliver next-generation ML-security products.</p></div>
+        </div>
+        <div data-role style="display:grid;grid-template-columns:180px 1fr;gap:40px;padding:32px 0;border-top:1px solid #e3e7ed">
+          <div data-when style="font-family:'Geist Mono',monospace;font-size:12.5px;color:#6c7889;padding-top:6px;letter-spacing:.03em">Feb 2022 — Dec 2022</div>
+          <div><div style="font-family:'Newsreader',serif;font-size:23px;font-weight:500">Senior Engineering Manager</div><div style="color:#1f6feb;font-weight:500;font-size:14px;margin:5px 0 12px;font-family:'Geist',sans-serif">Informatica</div><p style="color:#3a4a60;font-size:15px;max-width:64ch;line-height:1.65">Built and led diverse teams of engineers and engineering managers, set long-term strategy and roadmaps, and drove cross-functional engineering efforts.</p></div>
+        </div>
+        <div data-role style="display:grid;grid-template-columns:180px 1fr;gap:40px;padding:32px 0;border-top:1px solid #e3e7ed">
+          <div data-when style="font-family:'Geist Mono',monospace;font-size:12.5px;color:#6c7889;padding-top:6px;letter-spacing:.03em">Jan 2015 — Feb 2022</div>
+          <div><div style="font-family:'Newsreader',serif;font-size:23px;font-weight:500">VP R&amp;D &amp; CTO</div><div style="color:#1f6feb;font-weight:500;font-size:14px;margin:5px 0 12px;font-family:'Geist',sans-serif">ActiveTrail</div><p style="color:#3a4a60;font-size:15px;max-width:64ch;line-height:1.65">Owned infrastructure and IT for a high-scale SaaS platform. Modernized the technology stack, established security programs, and rebuilt delivery processes for scalability and fast recovery.</p></div>
+        </div>
+        <div data-role style="display:grid;grid-template-columns:180px 1fr;gap:40px;padding:32px 0;border-top:1px solid #e3e7ed">
+          <div data-when style="font-family:'Geist Mono',monospace;font-size:12.5px;color:#6c7889;padding-top:6px;letter-spacing:.03em">Jan 2009 — Jan 2015</div>
+          <div><div style="font-family:'Newsreader',serif;font-size:23px;font-weight:500">Founder &amp; CTO</div><div style="color:#1f6feb;font-weight:500;font-size:14px;margin:5px 0 12px;font-family:'Geist',sans-serif">Brio Software</div><p style="color:#3a4a60;font-size:15px;max-width:64ch;line-height:1.65">Ran a boutique software company. Led the team that designed the software for the Dell Networking X-Series Switch, and delivered technology migrations for enterprise clients.</p></div>
+        </div>
+        <div data-role style="display:grid;grid-template-columns:180px 1fr;gap:40px;padding:32px 0;border-top:1px solid #e3e7ed">
+          <div data-when style="font-family:'Geist Mono',monospace;font-size:12.5px;color:#6c7889;padding-top:6px;letter-spacing:.03em">Oct 2006 — Aug 2008</div>
+          <div><div style="font-family:'Newsreader',serif;font-size:23px;font-weight:500">Director of R&amp;D</div><div style="color:#1f6feb;font-weight:500;font-size:14px;margin:5px 0 12px;font-family:'Geist',sans-serif">MSN Israel</div><p style="color:#3a4a60;font-size:15px;max-width:64ch;line-height:1.65">Directed three development teams (10–14 people), owning systems analysis and design across all of MSN Israel's projects.</p></div>
+        </div>
+        <div data-role style="display:grid;grid-template-columns:180px 1fr;gap:40px;padding:32px 0;border-top:1px solid #e3e7ed;border-bottom:1px solid #e3e7ed">
+          <div data-when style="font-family:'Geist Mono',monospace;font-size:12.5px;color:#6c7889;padding-top:6px;letter-spacing:.03em">1999 — 2006</div>
+          <div><div style="font-family:'Newsreader',serif;font-size:23px;font-weight:500">Earlier roles</div><div style="color:#1f6feb;font-weight:500;font-size:14px;margin:5px 0 12px;font-family:'Geist',sans-serif">eWave · Scepia</div><p style="color:#3a4a60;font-size:15px;max-width:64ch;line-height:1.65">Grew from programmer to head team leader, delivering web and Windows applications, CRM, and web services.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 TECH -->
+  <section id="tech" style="background:#f6f7f8;padding:104px 0">
+    <div style="max-width:1140px;margin:0 auto;padding:0 40px">
+      <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:18px">
+        <span style="font-family:'Geist Mono',monospace;font-size:13px;color:#1f6feb;letter-spacing:.06em">§06 / 07</span>
+        <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,4.2vw,46px);letter-spacing:-.01em">Technical depth</h2>
+      </div>
+      <p style="color:#6c7889;font-size:17.5px;max-width:60ch;margin-bottom:50px;line-height:1.6">For the technical reader who wants to check under the hood.</p>
+      <div data-grid="tech" style="display:grid;grid-template-columns:repeat(4,1fr);gap:34px">
+        <div>
+          <h4 style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#0d1621;margin-bottom:16px;padding-bottom:13px;border-bottom:1px solid #cfd6df">AI / ML lifecycle</h4>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li style="font-size:14.5px;color:#3a4a60">Model development &amp; training</li><li style="font-size:14.5px;color:#3a4a60">ONNX · PyTorch · TensorFlow</li><li style="font-size:14.5px;color:#3a4a60">LLM training &amp; serving</li><li style="font-size:14.5px;color:#3a4a60">Production inference &amp; low-latency</li><li style="font-size:14.5px;color:#3a4a60">ML security &amp; robustness</li></ul>
+        </div>
+        <div>
+          <h4 style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#0d1621;margin-bottom:16px;padding-bottom:13px;border-bottom:1px solid #cfd6df">GPU &amp; infrastructure</h4>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li style="font-size:14.5px;color:#3a4a60">GPU orchestration &amp; scheduling</li><li style="font-size:14.5px;color:#3a4a60">GPU cluster management</li><li style="font-size:14.5px;color:#3a4a60">Inference optimization</li><li style="font-size:14.5px;color:#3a4a60">Autoscaling &amp; cost control</li><li style="font-size:14.5px;color:#3a4a60">Kubernetes</li></ul>
+        </div>
+        <div>
+          <h4 style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#0d1621;margin-bottom:16px;padding-bottom:13px;border-bottom:1px solid #cfd6df">Languages</h4>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li style="font-size:14.5px;color:#3a4a60">Python</li><li style="font-size:14.5px;color:#3a4a60">C / C++</li><li style="font-size:14.5px;color:#3a4a60">Java</li><li style="font-size:14.5px;color:#3a4a60">C#</li><li style="font-size:14.5px;color:#3a4a60">Rust</li></ul>
+        </div>
+        <div>
+          <h4 style="font-family:'Geist Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#0d1621;margin-bottom:16px;padding-bottom:13px;border-bottom:1px solid #cfd6df">Platforms</h4>
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:9px"><li style="font-size:14.5px;color:#3a4a60">Google Cloud · Azure · AWS</li><li style="font-size:14.5px;color:#3a4a60">On-prem</li><li style="font-size:14.5px;color:#3a4a60">Kafka · Storm</li><li style="font-size:14.5px;color:#3a4a60">Elasticsearch · Redis</li><li style="font-size:14.5px;color:#3a4a60">R&amp;D strategy · security · scaling</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 CONTACT -->
+  <section id="contact" style="background:#0d1621;color:#fff;padding:104px 0;position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;background:radial-gradient(100% 80% at 15% 100%,rgba(31,111,235,.14),transparent 55%);pointer-events:none"></div>
+    <div style="max-width:1140px;margin:0 auto;padding:0 40px;position:relative">
+      <div style="display:flex;align-items:baseline;gap:18px;margin-bottom:18px">
+        <span style="font-family:'Geist Mono',monospace;font-size:13px;color:#c8a24a;letter-spacing:.06em">§07 / 07</span>
+        <h2 style="font-family:'Newsreader',serif;font-weight:400;font-size:clamp(30px,4.2vw,46px);letter-spacing:-.01em;color:#fff">Get in touch</h2>
+      </div>
+      <p style="color:#8794a6;font-size:17.5px;max-width:60ch;margin-bottom:54px;line-height:1.6">Considering me for a leadership role, or have a serious engagement in mind? Tell me what you're building and where you're headed.</p>
+      <div data-grid="contact" style="display:grid;grid-template-columns:1fr 1.1fr;gap:64px;align-items:start">
+        <div>
+          <ul style="list-style:none">
+            <li style="padding:17px 0;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center;font-size:15px"><span style="color:#8794a6;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase">LinkedIn</span><a href="https://www.linkedin.com/in/gadsosa" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;font-weight:500;transition:color .2s" style-hover="color:#c8a24a">/in/gadsosa →</a></li>
+            <li style="padding:17px 0;border-top:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center;font-size:15px"><span style="color:#8794a6;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase">X</span><a href="https://x.com/GADSOSA_HANDLE" target="_blank" rel="noopener" style="color:#fff;text-decoration:none;font-weight:500;transition:color .2s" style-hover="color:#c8a24a">@GADSOSA_HANDLE →</a></li>
+            <li style="padding:17px 0;border-top:1px solid rgba(255,255,255,.12);border-bottom:1px solid rgba(255,255,255,.12);display:flex;justify-content:space-between;align-items:center;font-size:15px"><span style="color:#8794a6;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase">Location</span><span style="color:#cdd6e1">Israel · Remote-friendly</span></li>
+          </ul>
+          <div style="margin-top:32px;font-family:'Geist Mono',monospace;font-size:11px;letter-spacing:.14em;color:rgba(255,255,255,.3);line-height:1.9">32.0853° N · 34.7818° E<br>AVAILABLE // FULL-TIME &amp; 6MO+</div>
+        </div>
+        <form data-form style="display:grid;gap:16px">
+          <div><label for="gs-name" style="display:block;font-size:12px;color:#aeb9c9;margin-bottom:8px;font-family:'Geist Mono',monospace;letter-spacing:.06em">NAME</label><input type="text" id="gs-name" name="name" required style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:2px;padding:13px 15px;color:#fff;font-family:'Geist',sans-serif;font-size:15px" style-focus="border-color:#c8a24a;outline:none"></div>
+          <div data-grid="row2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div><label for="gs-email" style="display:block;font-size:12px;color:#aeb9c9;margin-bottom:8px;font-family:'Geist Mono',monospace;letter-spacing:.06em">EMAIL</label><input type="email" id="gs-email" name="email" required style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:2px;padding:13px 15px;color:#fff;font-family:'Geist',sans-serif;font-size:15px" style-focus="border-color:#c8a24a;outline:none"></div>
+            <div><label for="gs-company" style="display:block;font-size:12px;color:#aeb9c9;margin-bottom:8px;font-family:'Geist Mono',monospace;letter-spacing:.06em">COMPANY</label><input type="text" id="gs-company" name="company" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:2px;padding:13px 15px;color:#fff;font-family:'Geist',sans-serif;font-size:15px" style-focus="border-color:#c8a24a;outline:none"></div>
+          </div>
+          <div><label for="gs-type" style="display:block;font-size:12px;color:#aeb9c9;margin-bottom:8px;font-family:'Geist Mono',monospace;letter-spacing:.06em">WHAT ARE YOU LOOKING FOR?</label><select id="gs-type" name="type" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:2px;padding:13px 15px;color:#fff;font-family:'Geist',sans-serif;font-size:15px" style-focus="border-color:#c8a24a;outline:none"><option style="color:#111">Full-time leadership role (VP R&amp;D / CTO)</option><option style="color:#111">Long-term engagement (6+ months)</option><option style="color:#111">AI &amp; ML, development to production</option><option style="color:#111">AI-driven engineering (do more with less)</option><option style="color:#111">R&amp;D turnaround / scaling</option><option style="color:#111">Something else</option></select></div>
+          <div><label for="gs-message" style="display:block;font-size:12px;color:#aeb9c9;margin-bottom:8px;font-family:'Geist Mono',monospace;letter-spacing:.06em">TELL ME A BIT MORE</label><textarea id="gs-message" name="message" required style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.16);border-radius:2px;padding:13px 15px;color:#fff;font-family:'Geist',sans-serif;font-size:15px;resize:vertical;min-height:120px" style-focus="border-color:#c8a24a;outline:none"></textarea></div>
+          <button type="submit" onClick="{{ submit }}" style="background:#c8a24a;color:#0d1621;padding:15px 26px;border:none;border-radius:2px;font-size:15px;font-weight:600;font-family:'Geist',sans-serif;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:9px;transition:background .2s" style-hover="background:#d8b45c">Send message <span style="font-family:'Geist Mono',monospace">→</span></button>
+          <p style="font-size:12.5px;color:#8794a6">This opens your email client with the message pre-filled.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background:#0d1621;padding:34px 0;text-align:center;border-top:1px solid rgba(255,255,255,.08)">
+    <div style="font-family:'Geist Mono',monospace;font-size:12px;color:#6c7889;letter-spacing:.06em">© {{ year }} GAD SOSA · VP R&amp;D &amp; CTO · ML SECURITY</div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:900},&quot;showRegister&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Signature system&quot;},&quot;showTags&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Signature system&quot;}}">
+class Component extends DCLogic {
+  state = { active: 'top' };
+
+  componentDidMount() {
+    const ids = ['top','help','why','voices','insights','experience','tech','contact'];
+    this._io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) this.setState({ active: e.target.id }); });
+    }, { rootMargin: '-45% 0px -50% 0px', threshold: 0 });
+    ids.forEach(id => { const el = document.getElementById(id); if (el) this._io.observe(el); });
+    this.syncActive();
+  }
+
+  componentDidUpdate() { this.syncActive(); }
+
+  componentWillUnmount() { if (this._io) this._io.disconnect(); }
+
+  syncActive() {
+    const active = this.state.active;
+    const root = this._rootEl();
+    if (!root) return;
+    // register spine
+    root.querySelectorAll('[data-nav]').forEach(a => {
+      const on = a.getAttribute('data-nav') === active;
+      a.style.color = on ? '#0d1621' : '#9aa6b6';
+      const dot = a.querySelector('[data-regdot]');
+      const lbl = a.querySelector('[data-reglabel]');
+      if (dot) { dot.style.background = on ? '#1f6feb' : '#c3cbd6'; dot.style.width = on ? '34px' : '20px'; dot.style.height = on ? '2px' : '1.5px'; }
+      if (lbl) { lbl.style.opacity = on ? '1' : '0'; lbl.style.transform = on ? 'translateX(0)' : 'translateX(6px)'; lbl.style.color = on ? '#1f6feb' : '#9aa6b6'; }
+    });
+    // top nav links
+    root.querySelectorAll('[data-navlink]').forEach(a => {
+      a.style.color = a.getAttribute('data-navlink') === active ? '#fff' : '#9aa6b6';
+    });
+  }
+
+  _rootEl() {
+    if (this._cached && this._cached.isConnected) return this._cached;
+    const reg = document.querySelector('[data-register]');
+    this._cached = reg ? reg.parentElement : null;
+    return this._cached;
+  }
+
+  submit(e) {
+    e.preventDefault();
+    const form = e.target.closest('form') || document.querySelector('[data-form]');
+    const g = (n) => { const el = form.querySelector('[name="' + n + '"]'); return el ? el.value : ''; };
+    if (!g('name') || !g('email') || !g('message')) { if (form.reportValidity) form.reportValidity(); return; }
+    const subject = encodeURIComponent('Website enquiry — ' + g('type'));
+    const body = encodeURIComponent(
+      'Name: ' + g('name') +
+      '\nEmail: ' + g('email') +
+      (g('company') ? '\nCompany: ' + g('company') : '') +
+      '\nInterested in: ' + g('type') +
+      '\n\n' + g('message')
+    );
+    window.location.href = 'mailto:gadsosa@gmail.com?subject=' + subject + '&body=' + body;
+  }
+
+  renderVals() {
+    return {
+      year: new Date().getFullYear(),
+      showRegister: this.props.showRegister ?? true,
+      showTags: this.props.showTags ?? true,
+      submit: (e) => this.submit(e)
+    };
+  }
+}
+</script>
+</body>
+</html>

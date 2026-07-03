@@ -1,0 +1,13 @@
+{
+  "name": "gadsosa-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Gad Sosa personal site — Astro project wrapper",
+  "scripts": {
+    "dev": "cd site && npm run dev",
+    "build": "cd site && npm run build",
+    "preview": "cd site && npm run preview",
+    "deploy": "cd site && npm run deploy",
+    "astro": "cd site && npm run astro"
+  }
+}

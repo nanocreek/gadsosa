@@ -1,0 +1,21 @@
+---
+const links = [
+  { id: 'top', label: 'TOP' },
+  { id: 'help', label: '01 HOW I WORK' },
+  { id: 'why', label: '02 WHY ME' },
+  { id: 'portfolio', label: '03 PORTFOLIO' },
+  { id: 'insights', label: '04 INSIGHTS' },
+  { id: 'experience', label: '05 EXPERIENCE' },
+  { id: 'tech', label: '06 TECH DEPTH' },
+  { id: 'contact', label: '07 CONTACT' },
+];
+---
+
+<div class="section-register" aria-label="Section navigation">
+  {links.map((link) => (
+    <a href={`#${link.id}`} data-nav={link.id}>
+      <span class="reg-label">{link.label}</span>
+      <span class="reg-dot"></span>
+    </a>
+  ))}
+</div>
