@@ -19,7 +19,6 @@ export const profile = {
   ],
   sameAs: {
     linkedIn: 'https://www.linkedin.com/in/gadsosa',
-    x: 'https://x.com/GADSOSA_HANDLE',
   },
   publicationsAndTalks: [
     {

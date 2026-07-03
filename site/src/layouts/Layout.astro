@@ -35,7 +35,7 @@ const personSchema = {
   jobTitle: profile.jobTitle,
   description: profile.shortBio,
   url: site,
-  sameAs: [profile.sameAs.linkedIn, profile.sameAs.x],
+  sameAs: [profile.sameAs.linkedIn],
   worksFor: { '@type': 'Organization', name: 'DeepKeep' },
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Technion — Israel Institute of Technology' },
   knowsAbout: profile.topics,
@@ -124,7 +124,7 @@ const websiteSchema = {
         </button>
         <div class="nav-links" id="nav-links">
           <a href="/#help" data-navlink="help">How I work</a>
-          <a href="/#voices" data-navlink="voices">References</a>
+          <a href="/#portfolio" data-navlink="portfolio">Portfolio</a>
           <a href="/#insights" data-navlink="insights">Insights</a>
           <a href="/#experience" data-navlink="experience">Experience</a>
           <a href="/about/">About</a>
@@ -144,7 +144,6 @@ const websiteSchema = {
           <a href="/insights/">Insights</a>
           <a href="/llms.txt">For AI crawlers</a>
           <a href={profile.sameAs.linkedIn} target="_blank" rel="me noopener">LinkedIn</a>
-          <a href={profile.sameAs.x} target="_blank" rel="me noopener">X</a>
         </div>
         <div class="footer-copy">
           © <span id="year"></span> GAD SOSA · VP R&D & CTO · ML SECURITY
@@ -174,7 +173,7 @@ const websiteSchema = {
       }
 
       // Active section highlighting (nav + signature spine)
-      const ids = ['top', 'help', 'why', 'voices', 'insights', 'experience', 'tech', 'contact'];
+      const ids = ['top', 'help', 'why', 'portfolio', 'insights', 'experience', 'tech', 'contact'];
       const io = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {

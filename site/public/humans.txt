@@ -3,7 +3,6 @@
     Role: VP R&D, technology executive, site owner
     Site: https://www.gadsosa.com
     LinkedIn: https://www.linkedin.com/in/gadsosa
-    X: https://x.com/GADSOSA_HANDLE
     Location: Israel
 
 /* SITE */
