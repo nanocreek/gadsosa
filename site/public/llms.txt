@@ -1,0 +1,51 @@
+# Gad Sosa — llms.txt
+
+> A machine-readable summary of Gad Sosa and this site, designed for AI crawlers and LLM retrieval.
+
+## Person
+
+- **Name:** Gad Sosa
+- **Current role:** VP R&D at DeepKeep
+- **Location:** Israel (remote-friendly)
+- **Tagline:** Technology executive with 20+ years leading software R&D and machine-learning security. I build products people trust — and the lean R&D organizations that keep shipping them.
+- **Short bio:** Gad Sosa is a VP R&D and technology executive with 20+ years leading software organizations, AI/ML from model development to GPU-backed production systems, and ML security. He has held leadership roles at DeepKeep, Informatica, ActiveTrail, Brio/Dell, and MSN Israel.
+
+## Core expertise
+
+- VP R&D / CTO leadership
+- AI and ML from research to production
+- GPU orchestration and cluster management
+- Low-latency inference and production ML systems
+- ML security and adversarial ML
+- R&D turnaround and engineering team scaling
+- AI-driven engineering and engineering productivity
+- SaaS architecture and cloud infrastructure
+
+## Career highlights
+
+- VP R&D at DeepKeep — leading ML security products, publications, patents, and conference talks
+- Senior Engineering Manager at Informatica
+- VP R&D & CTO at ActiveTrail — rebuilt data infrastructure, security, and delivery for a high-scale SaaS platform
+- Founder & CTO at Brio Software — led software design for the Dell Networking X-Series Switch
+- Director of R&D at MSN Israel
+
+## Engagement model
+
+Gad takes on:
+
+1. Full-time executive roles (VP R&D / CTO)
+2. Committed, multi-month engagements for R&D turnaround, AI/ML productionization, or engineering scaling
+
+## Online profiles
+
+- Website: https://www.gadsosa.com
+- LinkedIn: https://www.linkedin.com/in/gadsosa
+- X / Twitter: https://x.com/GADSOSA_HANDLE
+
+## Key pages on this site
+
+- Home: https://www.gadsosa.com/
+- About: https://www.gadsosa.com/about/
+- Insights (blog): https://www.gadsosa.com/insights/
+- RSS feed: https://www.gadsosa.com/rss.xml
+- Sitemap: https://www.gadsosa.com/sitemap-index.xml

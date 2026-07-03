@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { profile } from '../data/profile';
+
+const title = `About ${profile.name} — VP R&D & CTO | ML Security`;
+const description = profile.shortBio;
+const canonical = '/about/';
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: profile.faq.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.answer,
+    },
+  })),
+};
+---
+
+<Layout title={title} description={description} canonical={canonical} type="website">
+  <Fragment slot="head-append">
+    <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  </Fragment>
+
+  <section class="article-layout">
+    <div class="wrap">
+      <header class="article-header">
+        <span class="article-tag">About</span>
+        <h1 class="sec-title" style="max-width: none;">{profile.name}</h1>
+        <p class="article-date">{profile.tagline}</p>
+      </header>
+
+      <div class="article-content">
+        {profile.fullBio.map((para) => <p>{para}</p>)}
+
+        <h2>Selected roles</h2>
+        <ul>
+          <li><strong>VP R&D</strong> — DeepKeep (2022–present)</li>
+          <li><strong>Senior Engineering Manager</strong> — Informatica (2022)</li>
+          <li><strong>VP R&D & CTO</strong> — ActiveTrail (2015–2022)</li>
+          <li><strong>Founder & CTO</strong> — Brio Software (2009–2015)</li>
+          <li><strong>Director of R&D</strong> — MSN Israel (2006–2008)</li>
+        </ul>
+
+        <h2>Publications, patents & talks</h2>
+        <ul>
+          {profile.publicationsAndTalks.map((pub) => (
+            <li>
+              <strong>{pub.title}</strong> — {pub.venue} ({pub.year}). {pub.role}.
+            </li>
+          ))}
+        </ul>
+
+        <h2>Where to find him</h2>
+        <ul>
+          <li>
+            <a href={profile.sameAs.linkedIn} target="_blank" rel="me noopener">LinkedIn</a>
+          </li>
+          <li>
+            <a href={profile.sameAs.x} target="_blank" rel="me noopener">X / Twitter</a>
+          </li>
+          <li>
+            <a href="/">Personal site</a>
+          </li>
+        </ul>
+      </div>
+
+      <h2 class="sec-title" style="margin-top: 80px; font-size: var(--text-display-sm);">Frequently asked questions</h2>
+      <div class="faq-list">
+        {profile.faq.map((item) => (
+          <details class="faq-item">
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .faq-list {
+    margin-top: 32px;
+    max-width: 70ch;
+  }
+  .faq-item {
+    border-top: 1px solid var(--line);
+    padding: 20px 0;
+  }
+  .faq-item summary {
+    font-family: var(--font-display);
+    font-size: 20px;
+    color: var(--ink);
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .faq-item summary::after {
+    content: '+';
+    font-family: var(--font-mono);
+    color: var(--accent);
+    font-size: 18px;
+  }
+  .faq-item[open] summary::after {
+    content: '−';
+  }
+  .faq-item p {
+    margin-top: 12px;
+    font-size: var(--text-md);
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+</style>

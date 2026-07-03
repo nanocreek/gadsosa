@@ -17,6 +17,8 @@ const title = `${post.data.title} — Gad Sosa`;
 const description = post.data.description;
 const canonical = `/insights/${post.id}/`;
 const publishedTime = post.data.date.toISOString();
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || 'https://www.gadsosa.com';
+const aboutUrl = `${siteUrl}/about/`;
 ---
 
 <Layout
@@ -27,25 +29,27 @@ const publishedTime = post.data.date.toISOString();
   publishedTime={publishedTime}
 >
   <Fragment slot="head-append">
+    <meta property="article:author" content={aboutUrl} />
     <script type="application/ld+json" set:html={JSON.stringify({
       '@context': 'https://schema.org',
       '@type': 'BlogPosting',
       headline: post.data.title,
       description: post.data.description,
-      url: `${Astro.site?.toString().replace(/\/$/, '')}${canonical}`,
+      url: `${siteUrl}${canonical}`,
       datePublished: publishedTime,
       author: {
         '@type': 'Person',
         name: 'Gad Sosa',
-        url: Astro.site?.toString().replace(/\/$/, ''),
+        url: aboutUrl,
       },
       publisher: {
         '@type': 'Person',
         name: 'Gad Sosa',
+        url: siteUrl,
       },
       mainEntityOfPage: {
         '@type': 'WebPage',
-        '@id': `${Astro.site?.toString().replace(/\/$/, '')}${canonical}`,
+        '@id': `${siteUrl}${canonical}`,
       },
     })} />
   </Fragment>
@@ -67,6 +71,14 @@ const publishedTime = post.data.date.toISOString();
       <div class="article-content">
         <Content />
       </div>
+
+      <aside class="author-box" aria-label="About the author">
+        <div>
+          <strong>Gad Sosa</strong>
+          <span>VP R&D · CTO advisor · ML Security</span>
+        </div>
+        <a href="/about/" rel="author">More about Gad →</a>
+      </aside>
     </div>
   </article>
 </Layout>
